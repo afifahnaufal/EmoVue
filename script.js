@@ -9,30 +9,41 @@ function initializeApp() {
 
 async function renderRefleksiHarian() {
     const container = document.getElementById('refleksi-harian');
+    container.className = 'refleksi-harian-section';
     container.innerHTML = '<div class="loading">Memuat refleksi harian...</div>';
     try {
         const response = await fetch(`api/refleksi-harian.php?user_id=${userId}`);
         const result = await response.json();
         if (result.success && result.data) {
             const { emotion, emoji, notes, tanggal } = result.data;
+            // Pilih aksen warna sesuai emosi
+            let accent = 'refleksi-aksen-abu';
+            if (emotion === 'senang') accent = 'refleksi-aksen-hijau';
+            else if (emotion === 'sedih') accent = 'refleksi-aksen-biru';
+            else if (emotion === 'marah') accent = 'refleksi-aksen-merah';
+            else if (emotion === 'stres') accent = 'refleksi-aksen-oranye';
+            else if (emotion === 'netral') accent = 'refleksi-aksen-abu';
             container.innerHTML = `
-                <div class="refleksi-card">
-                    <h3>Refleksi Harian Terakhir</h3>
-                    <div class="refleksi-emosi">
-                        <span style="font-size:2rem;">${emoji}</span>
-                        <span style="font-size:1.2rem;text-transform:capitalize;">${emotion}</span>
-                    </div>
-                    <div class="refleksi-notes">${notes ? notes : '-'}</div>
-                    <div class="refleksi-tanggal">${tanggal ? new Date(tanggal).toLocaleString('id-ID') : ''}</div>
+                <div class="refleksi-card-modern ${accent} refleksi-flex">
+                  <div class="refleksi-left">
+                    <div class="refleksi-title">Refleksi Harian Terakhir</div>
+                    <div class="refleksi-emosi-label">${emotion ? emotion : '-'}</div>
+                    <div class="refleksi-notes-modern">${notes ? notes : '-'}</div>
+                    <div class="refleksi-tanggal-modern">${tanggal ? new Date(tanggal).toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short', timeZone: 'Asia/Jakarta' }) + ' WIB' : ''}</div>
+                  </div>
+                  <div class="refleksi-right">
+                    <div class="refleksi-emoji">${emoji ? emoji : ''}</div>
+                  </div>
                 </div>
             `;
         } else {
-            container.innerHTML = '<div class="refleksi-empty">Belum ada refleksi harian.</div>';
+            container.innerHTML = '<div class="refleksi-empty-modern">Belum ada refleksi harian.</div>';
         }
     } catch (error) {
-        container.innerHTML = '<div class="refleksi-empty">Gagal memuat refleksi harian.</div>';
+        container.innerHTML = '<div class="refleksi-empty-modern">Gagal memuat refleksi harian.</div>';
     }
 }
+
 
 
 // Fitur refleksi mingguan dihapus
@@ -390,6 +401,8 @@ function showEmotionAlert(type, message, suggestions = []) {
 
 document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
+    // Mulai polling ringan untuk Refleksi Harian
+    setInterval(renderRefleksiHarian, 10000); // refresh tiap 10 detik
 });
 
 // Function to check emotion when text is submitted

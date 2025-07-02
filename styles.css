@@ -226,18 +226,45 @@ body {
 /* Emotion Grid */
 .emotion-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.2rem;
     margin-bottom: 2rem;
+    justify-items: center;
+    padding: 0 1rem;
+}
+
+@media (max-width: 900px) {
+    .emotion-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .emotion-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .emotion-card {
     background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
     box-shadow: var(--shadow);
     transition: transform 0.2s;
+    margin: 0 auto;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.emotion-card i {
+    font-size: 2.3rem;
+    margin-bottom: 0.5rem;
 }
 
 .emotion-card:hover {
@@ -289,25 +316,60 @@ body {
 /* MoodBoard */
 .mood-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1.2rem;
-    margin-top: 1rem;
+    justify-items: center;
+    align-items: start;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
 }
 
-.mood-cards > div {
+@media (min-width: 1100px) {
+    .mood-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 1099px) and (min-width: 700px) {
+    .mood-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 699px) {
+    .mood-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .mood-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mood-cards > div,
+.emotion-card {
+    width: 180px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 120px;
-    max-width: 420px;
-    margin: 0 auto;
-    background: #f5f7fa;
-    border-radius: 16px;
+    border-radius: 14px;
     box-shadow: 0 2px 12px 0 rgba(76, 110, 245, 0.09);
-    padding: 1.2rem 1.2rem 1rem 1.2rem;
-    transition: box-shadow 0.2s, transform 0.2s;
-    font-size: 1.08rem;
+    margin: 0 auto;
+    padding: 0.8rem 0.5rem;
+    box-sizing: border-box;
+    font-size: 0.97rem;
+    text-align: center;
+    transition: transform 0.2s;
+    overflow: hidden;
+    word-break: break-word;
+    background: var(--card-bg);
+}
+
+.mood-cards > div i,
+.emotion-card i {
+    font-size: 2.7rem;
+    margin-bottom: 0.7rem;
 }
 .mood-cards > div:hover {
     box-shadow: 0 6px 20px 0 rgba(76, 110, 245, 0.13);
@@ -361,6 +423,219 @@ body {
     color: var(--primary-color);
 }
 
+/* Refleksi Harian Modern Section */
+
+.refleksi-card-modern.refleksi-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.2rem;
+}
+
+.refleksi-left {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.refleksi-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 100px;
+}
+
+@media (max-width: 700px) {
+  .refleksi-card-modern.refleksi-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .refleksi-right {
+    margin: 1.2rem 0 0 0;
+    justify-content: flex-start;
+  }
+  .refleksi-emoji {
+    margin: 0;
+  }
+}
+
+.refleksi-harian-section {
+  width: 100%;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.refleksi-card-modern {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px 0 rgba(76, 110, 245, 0.05);
+  padding: 2.2rem 3rem 2.2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 8px solid #eaeaea;
+  transition: box-shadow 0.2s, transform 0.2s;
+  margin: 0 1rem;
+}
+.refleksi-card-modern:hover {
+  box-shadow: 0 4px 16px 0 rgba(76, 110, 245, 0.11), 0 1.5px 6px 0 rgba(76, 110, 245, 0.04);
+  transform: scale(1.01) translateY(-2px);
+}
+
+.refleksi-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #4a5fd2;
+  margin-bottom: 1.1rem;
+  text-align: left;
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+.refleksi-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+  text-align: left;
+}
+.refleksi-emosi-modern {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+  color: #444;
+  text-align: left;
+}
+.refleksi-emosi-label {
+  padding: 0.1rem 1rem;
+  border-radius: 12px;
+  background: #f4f6ff;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+.refleksi-notes-modern {
+  margin-bottom: 0.7rem;
+  color: #444;
+  font-style: italic;
+  font-size: 1.07rem;
+  text-align: left;
+  min-height: 1.5rem;
+}
+.refleksi-tanggal-modern {
+  color: #888;
+  font-size: 0.97rem;
+  margin-top: 0.15rem;
+  text-align: left;
+}
+.refleksi-empty-modern, .loading {
+  color: #aaa;
+  text-align: center;
+  padding: 2rem 0;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+@media (max-width: 900px) {
+  .refleksi-card-modern {
+    max-width: 98vw;
+    padding: 1.2rem 0.8rem 1rem 0.8rem;
+  }
+}
+@media (max-width: 600px) {
+  .refleksi-card-modern {
+    padding: 0.9rem 0.2rem 0.7rem 0.2rem;
+    border-radius: 13px;
+  }
+  .refleksi-title { font-size: 1.05rem; }
+  .refleksi-emoji { font-size: 1.3rem; }
+  .refleksi-emosi-modern { font-size: 0.95rem; }
+  .refleksi-notes-modern { font-size: 0.93rem; }
+  .refleksi-tanggal-modern { font-size: 0.93rem; }
+}
+
+.refleksi-card-modern:hover {
+  box-shadow: 0 8px 32px 0 rgba(76, 110, 245, 0.13), 0 2.5px 10px 0 rgba(76, 110, 245, 0.08);
+  transform: scale(1.01) translateY(-2px);
+}
+
+.refleksi-aksen-hijau { border-left: 8px solid #4CAF50 !important; }
+.refleksi-aksen-biru { border-left: 8px solid #2196F3 !important; }
+.refleksi-aksen-merah { border-left: 8px solid #F44336 !important; }
+.refleksi-aksen-oranye { border-left: 8px solid #FFA726 !important; }
+.refleksi-aksen-abu { border-left: 8px solid #bdbdbd !important; }
+
+.refleksi-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #4a5fd2;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  font-family: 'Inter', 'Poppins', sans-serif;
+}
+.refleksi-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.refleksi-emosi-modern {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #444;
+  text-align: center;
+}
+.refleksi-emosi-label {
+  padding: 0.2rem 1.1rem;
+  border-radius: 16px;
+  background: #f4f6ff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+.refleksi-notes-modern {
+  margin-bottom: 0.7rem;
+  color: #444;
+  font-style: italic;
+  font-size: 1.08rem;
+  text-align: center;
+  min-height: 1.5rem;
+}
+.refleksi-tanggal-modern {
+  color: #888;
+  font-size: 1.02rem;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+.refleksi-empty-modern, .loading {
+  color: #aaa;
+  text-align: center;
+  padding: 2rem 0;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+@media (max-width: 900px) {
+  .refleksi-card-modern {
+    max-width: 98vw;
+    padding: 1.2rem 0.8rem 1rem 0.8rem;
+  }
+}
+@media (max-width: 600px) {
+  .refleksi-card-modern {
+    padding: 0.9rem 0.2rem 0.7rem 0.2rem;
+    border-radius: 13px;
+  }
+  .refleksi-title { font-size: 1.1rem; }
+  .refleksi-emoji { font-size: 2.2rem; }
+  .refleksi-emosi-modern { font-size: 1rem; }
 /* Refleksi Harian Card */
 .refleksi-card {
     background: var(--card-bg);
@@ -471,6 +746,7 @@ body {
     .sidebar {
         display: none;
     }
+}
 
     .emotion-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
