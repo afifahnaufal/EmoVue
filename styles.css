@@ -89,8 +89,18 @@
 }
 
 body {
-    background: linear-gradient(120deg, #e3e7fa 0%, #f8f9fa 100%);
-    background-color: var(--background-color);
+    background: #f4f6ff;
+    /* Soft gradient agar tidak terlalu kontras di kanan/kiri */
+    background: linear-gradient(90deg, #e3e7fa 0%, #f8f9fa 50%, #e3e7fa 100%);
+    background-color: #f4f6ff;
+}
+
+.app-container {
+    background: transparent;
+}
+
+.main-content {
+    box-shadow: 0 8px 32px 0 rgba(76, 110, 245, 0.10), 0 1.5px 6px 0 rgba(76, 110, 245, 0.06);
 }
 
 /* Animasi fade-in untuk konten utama */
@@ -168,6 +178,17 @@ body {
     box-shadow: 0 8px 32px 0 rgba(76, 110, 245, 0.08), 0 1.5px 6px 0 rgba(76, 110, 245, 0.04);
     min-height: 90vh;
     transition: box-shadow 0.3s;
+    margin-left: 250px;
+}
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 80px;
+    }
+}
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
 }
 .main-content:hover {
     box-shadow: 0 12px 36px 0 rgba(76, 110, 245, 0.13), 0 2.5px 10px 0 rgba(76, 110, 245, 0.08);
