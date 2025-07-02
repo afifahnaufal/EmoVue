@@ -4,10 +4,38 @@ let emotionChartInstance = null;
 
 function initializeApp() {
     loadWeeklyEmotions();
-    initializeWeeklyReflection();
+    renderRefleksiHarian();
 }
 
-function initializeWeeklyReflection() {
+async function renderRefleksiHarian() {
+    const container = document.getElementById('refleksi-harian');
+    container.innerHTML = '<div class="loading">Memuat refleksi harian...</div>';
+    try {
+        const response = await fetch(`api/refleksi-harian.php?user_id=${userId}`);
+        const result = await response.json();
+        if (result.success && result.data) {
+            const { emotion, emoji, notes, tanggal } = result.data;
+            container.innerHTML = `
+                <div class="refleksi-card">
+                    <h3>Refleksi Harian Terakhir</h3>
+                    <div class="refleksi-emosi">
+                        <span style="font-size:2rem;">${emoji}</span>
+                        <span style="font-size:1.2rem;text-transform:capitalize;">${emotion}</span>
+                    </div>
+                    <div class="refleksi-notes">${notes ? notes : '-'}</div>
+                    <div class="refleksi-tanggal">${tanggal ? new Date(tanggal).toLocaleString('id-ID') : ''}</div>
+                </div>
+            `;
+        } else {
+            container.innerHTML = '<div class="refleksi-empty">Belum ada refleksi harian.</div>';
+        }
+    } catch (error) {
+        container.innerHTML = '<div class="refleksi-empty">Gagal memuat refleksi harian.</div>';
+    }
+}
+
+
+// Fitur refleksi mingguan dihapus
     const reflectionBtn = document.querySelector('.reflection-btn');
     const reflectionModal = document.querySelector('.reflection-modal');
     const reflectionText = document.querySelector('.reflection-text');
@@ -65,9 +93,10 @@ function initializeWeeklyReflection() {
             }
         });
     }
-}
 
-async function loadCurrentReflection() {
+
+// Fitur refleksi mingguan dihapus
+(async function() {
     const reflectionText = document.querySelector('.reflection-text');
     if (reflectionText) {
         try {
@@ -81,7 +110,8 @@ async function loadCurrentReflection() {
             console.error('Error:', error);
         }
     }
-}
+})();
+
 
 function getWeekStartDate() {
     const today = new Date();
