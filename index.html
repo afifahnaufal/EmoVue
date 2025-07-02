@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoSync - Emotional Intelligence Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>EmoSync</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#dashboard" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#weekly-reflection">
+                    <i class="fas fa-calendar-week"></i>
+                    <span>Weekly Reflection</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard">
+                <h1 class="page-title">Dashboard</h1>
+                
+                <div class="emotion-grid">
+                    <div class="emotion-card happy">
+                        <i class="fas fa-smile"></i>
+                        <span>Happy</span>
+                    </div>
+                    <div class="emotion-card neutral">
+                        <i class="fas fa-meh"></i>
+                        <span>Neutral</span>
+                    </div>
+                    <div class="emotion-card sad">
+                        <i class="fas fa-sad-tear"></i>
+                        <span>Sad</span>
+                    </div>
+                    <div class="emotion-card angry">
+                        <i class="fas fa-angry"></i>
+                        <span>Angry</span>
+                    </div>
+                </div>
+
+                <div class="emotion-form">
+                    <textarea placeholder="Describe your current emotion..."></textarea>
+                    <button class="submit-btn">Submit</button>
+                </div>
+            </section>
+
+            <!-- MoodBoard Section -->
+            <section id="moodboard" class="moodboard">
+                <h2>MoodBoard</h2>
+                <div class="mood-cards">
+                    <!-- Mood cards will be populated dynamically -->
+                </div>
+            </section>
+
+            <!-- Emotional Report Section -->
+            <section id="emotional-report" class="emotional-report">
+                <div class="emotion-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Weekly Emotion</h3>
+                        <span class="stat-value">75%</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Trend</h3>
+                        <span class="stat-value">+10%</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="emotionChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Weekly Reflection Section -->
+            <section id="weekly-reflection" class="weekly-reflection">
+                <h2>Weekly Reflection</h2>
+                <div class="reflection-actions">
+                    <button class="reflection-btn">Tambah Refleksi Mingguan</button>
+                </div>
+                <div class="reflection-grid">
+                    <!-- Reflection cards will be populated dynamically -->
+                </div>
+            </section>
+
+            <!-- Modal Refleksi -->
+            <div class="reflection-modal">
+                <div class="modal-content">
+                    <span class="close-reflection-btn">&times;</span>
+                    <h2>Refleksi Mingguan</h2>
+                    <textarea class="reflection-text" placeholder="Tulis refleksi mingguan Anda..."></textarea>
+                    <button class="save-reflection-btn">Simpan Refleksi</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="js/toast.js"></script>
+</body>
+</html>
