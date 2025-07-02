@@ -156,17 +156,17 @@ body {
 /* Main Content Styles */
 .main-content {
     flex: 1;
-    margin-left: 250px;
-    padding: 2.5rem 3rem;
+    max-width: 900px;
+    width: 100%;
+    margin: 1.2rem auto;
+    padding: 1.2rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
     background: rgba(255,255,255,0.85);
     border-radius: 18px;
     box-shadow: 0 8px 32px 0 rgba(76, 110, 245, 0.08), 0 1.5px 6px 0 rgba(76, 110, 245, 0.04);
     min-height: 90vh;
-    margin-top: 2rem;
-    margin-right: 2rem;
     transition: box-shadow 0.3s;
 }
 .main-content:hover {
@@ -334,9 +334,19 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-@media (max-width: 699px) {
+@media (max-width: 900px) {
     .mood-cards {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 1200px) {
+    .mood-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .mood-cards {
+        grid-template-columns: 1fr;
     }
 }
 @media (max-width: 480px) {
@@ -345,7 +355,16 @@ body {
     }
 }
 
-.mood-cards > div,
+.mood-cards > div {
+    min-width: 0;
+    width: 100%;
+    max-width: 210px;
+    height: 120px;
+    margin: 0 auto;
+    font-size: 1rem;
+    padding: 0.7rem 0.5rem;
+}
+.mood-cards > div, 
 .emotion-card {
     width: 180px;
     height: 140px;
@@ -691,17 +710,25 @@ body {
 
 .chart-container {
     width: 100%;
+    max-width: 700px;
     height: 400px;
     background-color: white;
     border-radius: 12px;
     box-shadow: var(--shadow);
-    margin-top: 1.5rem;
+    margin: 1.5rem auto 1.5rem auto;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
 }
 
 #emotionChart {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    max-width: 680px;
+    height: 350px !important;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Responsive Design */
